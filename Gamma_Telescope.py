@@ -5,6 +5,9 @@ from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import RandomOverSampler
 from sklearn.neighbors import KNeighborsClassifier 
 from sklearn.metrics import classification_report
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 
 # *************** DATASET *******************
 
@@ -51,6 +54,31 @@ print(sum(y_train==0))
 knn_model = KNeighborsClassifier(n_neighbors=20)
 knn_model.fit(x_train, y_train)
 y_pred = knn_model.predict(x_test)
+#print(classification_report(y_test, y_pred))
+#print(y_pred)
+#print(y_test)
+
+# **************NAIVE BAYES**********
+# From Bayes Rule
+nb_model = GaussianNB()
+nb_model = nb_model.fit(x_train, y_train)
+
+y_pred = nb_model.predict(x_test)
+#print(classification_report(y_test, y_pred))
+
+# *********LOGISTIC REGRESION**********
+lg_model = LogisticRegression()
+lg_model = lg_model.fit(x_train, y_train)
+
+y_pred = lg_model.predict(x_test)
+#print(classification_report(y_test, y_pred))
+
+# ******SUPPORT VECTOR CLASSIFIER*********
+# Uses support vector machines
+
+svm_model = SVC()
+svm_model = svm_model.fit(x_train, y_train)
+y_pred = svm_model.predict(x_test)
 print(classification_report(y_test, y_pred))
 print(y_pred)
 print(y_test)
